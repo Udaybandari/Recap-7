@@ -1,9 +1,9 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 const initialstate=[];
 const ADD_TODO = "ADD_TODO";
-const TOGGLE_TODO = "TOGGLE_TODO";
-const DELETE_TODO = "DELETE_TODO";
-const CLEAR_COMPLETED = "CLEAR_COMPLETED";
+// const TOGGLE_TODO = "TOGGLE_TODO";
+// const DELETE_TODO = "DELETE_TODO";
+// const CLEAR_COMPLETED = "CLEAR_COMPLETED";
 function reducer(state,action)
 {
     switch(action.type)
@@ -17,6 +17,8 @@ function reducer(state,action)
           completed: false
             }
          ]
+         default:
+            return state;
     }
 }
 const AdvancedTodoApp = () => {
