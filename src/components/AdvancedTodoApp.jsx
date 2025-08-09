@@ -3,8 +3,8 @@ const initialstate=[];
 
 const ADD_TODO = "ADD_TODO";
 // const TOGGLE_TODO = "TOGGLE_TODO";
-// const DELETE_TODO = "DELETE_TODO";
-// const CLEAR_COMPLETED = "CLEAR_COMPLETED";
+const DELETE_TODO = "DELETE_TODO";
+
 
 
 
@@ -21,6 +21,9 @@ function reducer(state,action)
           completed: false
             }
          ]
+       case DELETE_TODO:
+  return state.filter((t) => t.id !== action.payload);
+
          default:
             return state;
     }
@@ -44,6 +47,12 @@ const AdvancedTodoApp = () => {
             setInput("")
         }
       }
+        const handleDelete=(id)=>{
+      
+            dispatch({type:DELETE_TODO,payload:id});
+          
+        
+      }
   return (
     <div> 
         <h1>TODO with USEREDUCER</h1>
@@ -53,9 +62,13 @@ const AdvancedTodoApp = () => {
         placeholder="Add a todo"
       />
         <button onClick={handleAdd}>Add</button>
+               
         {
             state.map((a)=>(
-              <p>{a.text}</p>
+              <div>
+                <p>{a.text}</p>
+              <button className='cursor-pointer' onClick={()=>handleDelete(a.id)}>Delete</button>
+                </div>
             ))
         }
     </div>
