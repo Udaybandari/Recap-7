@@ -6,8 +6,8 @@ import AdvancedTodoApp from "./components/AdvancedTodoApp";
 const App = () => {
   return (
     <div>
-      <UseReducer/>
-      <UseReducer2/>
+      {/* <UseReducer/>
+      <UseReducer2/> */}
       <AdvancedTodoApp/>
     </div>
   )
