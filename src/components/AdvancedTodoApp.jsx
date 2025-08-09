@@ -1,9 +1,13 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 const initialstate=[];
+
 const ADD_TODO = "ADD_TODO";
 // const TOGGLE_TODO = "TOGGLE_TODO";
 // const DELETE_TODO = "DELETE_TODO";
 // const CLEAR_COMPLETED = "CLEAR_COMPLETED";
+
+
+
 function reducer(state,action)
 {
     switch(action.type)
@@ -22,7 +26,15 @@ function reducer(state,action)
     }
 }
 const AdvancedTodoApp = () => {
-    const [state,dispatch]=useReducer(reducer,initialstate);
+   const [state,dispatch]=useReducer(reducer,initialstate,  () => {
+      const stored = localStorage.getItem("state");
+      return stored ? JSON.parse(stored) : [];
+    });
+  useEffect(()=>{
+  localStorage.setItem("state",JSON.stringify(state));
+},[state])
+
+   
       const [input, setInput] = useState("");
       const handleAdd=()=>{
         const trimmed=input.trim();
