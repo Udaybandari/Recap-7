@@ -3,6 +3,7 @@ const ADD_TODO="ADD_TODO"
 const DELETE_TODO="DELETE_TODO"
 function reducer(state,action)
 {
+  console.log(action.payload)
   switch(action.type)
   {
   case ADD_TODO:
@@ -21,6 +22,7 @@ function reducer(state,action)
 }
 const AdvancedTodoApp = () => {
   const handleAdd =()=>{
+
   const trimmed=input.trim();
   if(trimmed)
   {
@@ -28,7 +30,9 @@ const AdvancedTodoApp = () => {
   }
    setInput("");
 }
+
 const deleteTodo =(id)=>{
+
   dispatch({type:DELETE_TODO,payload:id})
 }
   const [input,setInput]=useState("")
@@ -36,6 +40,7 @@ const deleteTodo =(id)=>{
   useEffect(()=>{
     localStorage.setItem("state",JSON.stringify(state));
   },[state])
+
   return (
     <div className="h-42 border-3 w-88 m-13 flex flex-col items-center justify-center gap-5">
     <div className="flex">
