@@ -6,21 +6,34 @@ const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
 // const MOVE_TO_WISHLIST = "MOVE_TO_WISHLIST";
 // const MOVE_TO_CART = "MOVE_TO_CART";
 const initialState = {
-  cart: [],
-  wishlist: [],
-  totalItems: 0,
-  totalPrice: 0
+  cart:{
+          items:[],
+         totalItems: 0,
+         totalPrice: 0,
+  },
+  wishlist:{
+    items:[],
+    totalItems:0,
+    totalPrice:0,
+  }
+
+
+
+
 };
 function reducer(state,action)
 {
     switch(action.type)
     {
         case ADD_TO_CART:
-            const updatedcart=[...state.cart,action.payload];
-            const updatedtotalitems=state.totalItems+action.payload.quantity;
-            const updatedtotalprice=state.totalPrice+(action.payload.quantity*action.payload.price);
+            const updatedcartitems=[...state.cart.items,action.payload];
+            const updatedtotalitems=state.cart.totalItems+action.payload.quantity;
+            const updatedtotalprice=state.cart.totalPrice+(action.payload.quantity*action.payload.price);
             return {
-              ...state,cart:updatedcart,totalItems:updatedtotalitems,totalPrice:updatedtotalprice
+              ...state,
+              cart:{
+                ...state.cart,
+                items:updatedcartitems,totalItems:updatedtotalitems,totalPrice:updatedtotalprice}
             }
         case REMOVE_FROM_CART:
          const updatedcarts=[...state.cart.filter((i)=>i.id!==action.payload)];
@@ -31,11 +44,15 @@ function reducer(state,action)
             ...state,cart:updatedcarts,totalItems:updatedtotalItem,totalPrice:updatedtotalPrice
          }
         case ADD_TO_WISHLIST:
-            const item=state.cart.find((i)=>i.id===action.payload)
+            const item=state.cart.items.find((i)=>i.id===action.payload)
+            const totalprice=state.wishlist.wishtotalprice+item.price;
+             const totalQuantity=state.wishlist.wishtotalitems+item.quantity;
+             const ItemsTotal=state.totalItems-item.quantity;
+         const PriceTotal=state.totalPrice-(item.quantity*item.price);
              const updatedwish=[...state.wishlist,item];
 
             return {
-              ...state,cart:updatedwish
+              ...state,wishlist:updatedwish,wishtotalprice:totalprice, wishtotalitems:totalQuantity ,totalItems:ItemsTotal,totalPrice:PriceTotal
             }
 
          default:
@@ -45,7 +62,7 @@ function reducer(state,action)
 }
 const Cart = () => {
     const [name,setName]=useState("");
-    const [wishlish,setwishlist]=useState(false);
+    const [wish,setwish]=useState(false);
         const[quantity,setQuantity]=useState(0);
         const[price,setPrice]=useState(0);
       const [state, dispatch] = useReducer(reducer, initialState);
@@ -58,7 +75,7 @@ const Cart = () => {
       const removefromcart=(id)=>{
         dispatch({type:REMOVE_FROM_CART,payload:id})
       }
-      const addtowishlist=()=>{
+      const addtowishlist=(id)=>{
         dispatch({type:ADD_TO_WISHLIST,payload:id})
       }
   return (
@@ -81,13 +98,13 @@ const Cart = () => {
            
              </div>
              <div>
-                <button onClick={()=>setwishlist(!wishlish)}>Open Wishlist</button>
-                {wishlish?(<div>
+                <button onClick={()=>setwish(!wish)}>Open Wishlist</button>
+                {wish?(<div>
                        {
-                        state.wishlish.isEmpty()?<p>No items added yet:</p>:(
+                        state.wishlist.length===0?<p>No items added yet:</p>:(
                       <div>
                         {
-                                  state.cart.map((b)=>(
+                                  state.wishlist.map((b)=>(
                     <div>
                         {b.name}
                         </div>
