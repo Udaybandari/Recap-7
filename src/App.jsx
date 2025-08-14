@@ -4,6 +4,7 @@ import UseReducer2 from "./components/UseReducer2";
 import AdvancedTodoApp from "./components/AdvancedTodoApp";
 import ShoppingCart from "./components/ShoppingCart";
 import Cart from "./components/Cart";
+import Usref from "./components/Useref";
 
 const App = () => {
   return (
@@ -12,7 +13,8 @@ const App = () => {
       <UseReducer2/> 
       <AdvancedTodoApp/>
       <ShoppingCart/> */}
-      <Cart/>
+      {/* <Cart/> */}
+      <Usref/>
     </div>
   )
 };
