@@ -2,7 +2,7 @@ import React, { useState,useReducer } from "react";
 const ADD_TO_CART = "ADD_TO_CART";
 const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 const ADD_TO_WISHLIST = "ADD_TO_WISHLIST";
-// const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST";
+const REMOVE_FROM_WISHLIST = "REMOVE_FROM_WISHLIST";
 // const MOVE_TO_WISHLIST = "MOVE_TO_WISHLIST";
 // const MOVE_TO_CART = "MOVE_TO_CART";
 const initialState = {
@@ -36,25 +36,48 @@ function reducer(state,action)
                 items:updatedcartitems,totalItems:updatedtotalitems,totalPrice:updatedtotalprice}
             }
         case REMOVE_FROM_CART:
-         const updatedcarts=[...state.cart.filter((i)=>i.id!==action.payload)];
-         const removeditem=state.cart.find((i)=>i.id===action.payload);
-         const updatedtotalItem=state.totalItems-removeditem.quantity;
-         const updatedtotalPrice=state.totalPrice-(removeditem.quantity*removeditem.price);
+         const updatedcarts=[...state.cart.items.filter((i)=>i.id!==action.payload)];
+         const removeditem=state.cart.items.find((i)=>i.id===action.payload);
+         const updatedtotalItem=state.cart.totalItems-removeditem.quantity;
+         const updatedtotalPrice=state.cart.totalPrice-(removeditem.quantity*removeditem.price);
          return {
-            ...state,cart:updatedcarts,totalItems:updatedtotalItem,totalPrice:updatedtotalPrice
+            ...state,
+           cart:{
+            ...state.cart,
+             items:updatedcarts,totalItems:updatedtotalItem,totalPrice:updatedtotalPrice
+           }
          }
         case ADD_TO_WISHLIST:
-            const item=state.cart.items.find((i)=>i.id===action.payload)
-            const totalprice=state.wishlist.wishtotalprice+item.price;
-             const totalQuantity=state.wishlist.wishtotalitems+item.quantity;
-             const ItemsTotal=state.totalItems-item.quantity;
-         const PriceTotal=state.totalPrice-(item.quantity*item.price);
-             const updatedwish=[...state.wishlist,item];
+           const product=state.cart.items.find((a)=>a.id===action.payload);
+           if(!product) return state;
+           return{
+            ...state,
+            cart:{
+              ...state.cart,
+              items:state.cart.items.filter((a)=>a.id!==product.id),
+              totalItems:state.cart.totalItems-product.quantity,
+              totalPrice:state.cart.totalPrice-(product.quantity*product.price)
+            },
+            wishlist:{
+              ...state.wishlist,
+              items:[...state.wishlist.items,product],
+              totalItems:state.wishlist.totalItems+product.quantity,
+              totalPrice:state.wishlist.totalPrice+(product.quantity*product.price)
 
-            return {
-              ...state,wishlist:updatedwish,wishtotalprice:totalprice, wishtotalitems:totalQuantity ,totalItems:ItemsTotal,totalPrice:PriceTotal
             }
-
+           }
+            case REMOVE_FROM_WISHLIST:
+         const updatedcars=[...state.wishlist.items.filter((i)=>i.id!==action.payload)];
+         const removeditems=state.wishlist.items.find((i)=>i.id===action.payload);
+         const updatedtotalIte=state.wishlist.totalItems-removeditems.quantity;
+         const updatedtotalPric=state.wishlist.totalPrice-(removeditems.quantity*removeditems.price);
+         return {
+            ...state,
+           wishlist:{
+            ...state.wishlist,
+             items:updatedcars,totalItems:updatedtotalIte,totalPrice:updatedtotalPric
+           }
+         }
          default:
             return state
     }
@@ -78,6 +101,9 @@ const Cart = () => {
       const addtowishlist=(id)=>{
         dispatch({type:ADD_TO_WISHLIST,payload:id})
       }
+        const removefromwish=(id)=>{
+        dispatch({type:REMOVE_FROM_WISHLIST,payload:id})
+      }
   return (
     <div>
         <label >NAME:</label>
@@ -88,7 +114,7 @@ const Cart = () => {
              <input className="w-33 focus:outline-none text-[15px]"  value={price}  onChange={(e)=>setPrice(Number(e.target.value))} placeholder="Enter price.." type="number" min='1' step='1'  />
              <button onClick={addtocart}>Add To Cart</button>
              <div>
-                {state.cart.map((a)=>(
+                {state.cart.items.map((a)=>(
                     <div>
                         {a.name}
                       <button onClick={()=>removefromcart(a.id)}>Delete</button>
@@ -101,12 +127,13 @@ const Cart = () => {
                 <button onClick={()=>setwish(!wish)}>Open Wishlist</button>
                 {wish?(<div>
                        {
-                        state.wishlist.length===0?<p>No items added yet:</p>:(
+                        state.wishlist.items.length===0?<p>No items added yet:</p>:(
                       <div>
                         {
-                                  state.wishlist.map((b)=>(
+                                  state.wishlist.items.map((b)=>(
                     <div>
                         {b.name}
+                        <button onClick={()=>removefromwish(b.id)} >Delete</button>
                         </div>
                 ))
                         }
