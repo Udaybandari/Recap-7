@@ -2,30 +2,28 @@ import React, { useRef, useState } from "react";
 
 
 const Usref = () => {
-    const[,setRender]=useState({});
-const count=useRef(0);
-const handleincrease=()=>{
-    count.current+=1;
-    console.log(count.current)
-    setRender({});
+const [running,setRunning]=useState(false);
+const [time,setTime]=useState(0);
+
+const input=useRef(null);
+const prevTime=useRef(null);
+const Time=useRef(null);
+const startTimer=()=>{
+  if(!running)
+  {
+   setRunning(true);
+  Time.current= setInterval(()=>(
+    setTime((t)=>t+1)
+   ),1000)
+  }
 }
-const handledecrease=()=>{
-    count.current-=1;
-    console.log(count)
-    setRender({});
-}
+
+
   return (
 
     <div className="m-5">
-         <input
-        ref={inputRef}
-        type="text"
-        placeholder="Click button to focus me"
-      />
-      <button onClick={handleFocus}>Focus the Input</button>
-    <p>{count.current}</p>
-<button  className="cursor-pointer p-4" onClick={handleincrease}>Increase</button>
-<button className="cursor-pointer p-4" onClick={handledecrease}>Decrease</button>
+      <h1>{Time.current}</h1>
+         <button onClick={startTimer}>Start</button>
     </div>
   )
 };
