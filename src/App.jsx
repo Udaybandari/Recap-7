@@ -8,10 +8,11 @@ import Usref from "./components/Useref";
 ;
 import Us from "./components/Us";
 import Simpleref from "./components/simpleref";
+import CallMemo from "./components/CallMemo";
 
 const App = () => {
   return (
-    <div>
+    <div className="m-22 w-[1400px] h-[600px] border-1 flex flex-col items-center justify-center">
       {/* <UseReducer/>
       <UseReducer2/> 
       <AdvancedTodoApp/>
@@ -19,7 +20,8 @@ const App = () => {
       {/* <Cart/> */}
       {/* <Usref/> */}
   {/* <Us/> */}
-  <Simpleref/>
+  {/* <Simpleref/> */}
+  <CallMemo/>
     </div>
   )
 };
