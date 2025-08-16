@@ -5,7 +5,8 @@ const Usref = () => {
 const [running,setRunning]=useState(false);
 const [time,setTime]=useState(0);
 
-const input=useRef(null);
+const inputref=useRef(null);
+
 const prevTime=useRef(null);
 const Time=useRef(null);
 const startTimer=()=>{
@@ -20,7 +21,10 @@ console.log(Time.current)
   
   }
 }
-
+const focus=()=>{
+  inputref.current.focus();
+  console.log(inputref)
+}
 const stopTimer=()=>{ 
   clearInterval(Time.current)
   prevTime.current=time;
@@ -30,9 +34,11 @@ const stopTimer=()=>{
 
     <div className="m-5 flex gap-5">
       {prevTime.current!==null&&<h1>{prevTime.current}</h1>}
+<input type="text" ref={inputref} name="" id="" />
       <h1>{time}</h1>
          <button onClick={startTimer}>Start</button>
          <button onClick={stopTimer}>Stop</button>
+         <button onClick={focus}>Focus</button>
     </div>
   )
 };

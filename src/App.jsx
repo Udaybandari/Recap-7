@@ -5,6 +5,9 @@ import AdvancedTodoApp from "./components/AdvancedTodoApp";
 import ShoppingCart from "./components/ShoppingCart";
 import Cart from "./components/Cart";
 import Usref from "./components/Useref";
+;
+import Us from "./components/Us";
+import Simpleref from "./components/simpleref";
 
 const App = () => {
   return (
@@ -14,7 +17,9 @@ const App = () => {
       <AdvancedTodoApp/>
       <ShoppingCart/> */}
       {/* <Cart/> */}
-      <Usref/>
+      {/* <Usref/> */}
+  {/* <Us/> */}
+  <Simpleref/>
     </div>
   )
 };
