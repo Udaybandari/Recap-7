@@ -9,6 +9,7 @@ import Usref from "./components/Useref";
 import Us from "./components/Us";
 import Simpleref from "./components/simpleref";
 import CallMemo from "./components/CallMemo";
+import Callback from "./components/Callback";
 
 const App = () => {
   return (
@@ -21,7 +22,8 @@ const App = () => {
       {/* <Usref/> */}
   {/* <Us/> */}
   {/* <Simpleref/> */}
-  <CallMemo/>
+  {/* <CallMemo/> */}
+  <Callback/>
     </div>
   )
 };
