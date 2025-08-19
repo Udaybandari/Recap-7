@@ -1,26 +1,11 @@
 import React, { useMemo, useState } from "react";
+import useFetch from "./Customhook";
 
 const CallMemo = () => {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [flag,setFlag]=useState(false);
-  async function fetchData() {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch("https://dummyjson.com/products");
-      if (!response.ok) {
-        throw new Error("Failed to fetch data");
-      }
-      const result = await response.json();
-      setData(result);  
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  }
+  const [flag, setFlag] = useState(true);
+ 
+const {data,loading,error}=useFetch("https://dummyjson.com/products");
+console.log(data)
     function filteredData(getProducts)
     { 
       console.log("filter runs...")
@@ -35,10 +20,10 @@ const CallMemo = () => {
     <div className="flex flex-col">
        {flag?  <h1 >Call Memo</h1>:<h1>No Memo</h1>}
       <button onClick={()=>setFlag(prev=>!prev)}>click</button>
-      <button onClick={fetchData}>Fetch Data</button>
+      {/* <button onClick={fetchData}>Fetch Data</button> */}
 
       {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p style={{ color: "red" }}>{error.message}</p>}
          {memoizedversion.map((a) => (
         <p key={a.id}>{a.title}</p>
       ))}
