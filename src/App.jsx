@@ -1,29 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
+import ProductListPage from "./components/ShoppingCart/Pages/ProductList";
+import { Route, Routes } from "react-router-dom";
+import ProductDetailsPage from "./components/ShoppingCart/Pages/productDetails";
+import CartListPage from "./components/ShoppingCart/Pages/CartList";
 
 
 const App = () => {
-  return (
-    <div className="m-22 w-[1400px] h-[600px] border-1 flex flex-col items-center justify-center">
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </div>
-  )
+  return   <Fragment>
+  
+      <Routes>
+          <Route path="/product-list" element={<ProductListPage/>}/>
+              <Route path="/product-list/:id" element={<ProductDetailsPage/>}/>
+              <Route path="/cart" element={<CartListPage/>}/>
+      </Routes>
+  </Fragment>
 };
 
 export default App;
