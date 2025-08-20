@@ -11,7 +11,7 @@ import useFetch from "../../Practiced/Customhook";
   function ShoppingContext({children})
   {
      const {data,loading,error}=useFetch("https://dummyjson.com/products");
-console.log(data);
+
     return <ShoppingCartContext.Provider value={{data,loading,error}}>
         {children}
         </ShoppingCartContext.Provider>

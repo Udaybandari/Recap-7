@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ShoppingCartContext } from "../../Context";
+import ProductTile from "../../ProductTile";
 
 const ProductListPage = () => {
-  return <div>ProductListPage</div>;
+  const { data } = useContext(ShoppingCartContext);
+console.log(data)
+  return (
+    <section className="py-12 bg-white sm:py-16 lg:py-20">
+      <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+        <div className="max-w-md mx-auto text-center">
+          <h2 className="text-3xl font-extralight text-gray-950 sm:text-4xl">
+            Our Featured Products
+          </h2>
+        </div>
+        <div>
+          {data && data.length > 0 ? (
+            data.map((a) => <ProductTile key={a.id} a={a} />)
+          ) : (
+            <h3>No Products Found...</h3>
+          )}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default ProductListPage;
