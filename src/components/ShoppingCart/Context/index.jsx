@@ -3,20 +3,42 @@
   //wrap context to root component
   //consume the context using usecontext
 
-import { createContext } from "react";
+import { createContext, useState } from "react";
 
 import useFetch from "../../Practiced/Customhook";
   export const ShoppingCartContext=createContext(null);
-   function handleAddToCart(getproducts)
-   {
-    console.log(getproducts);
-   }
+ 
   function ShoppingContext({children})
   {
+       const[cartItems,setCartItems]=useState([]);
      const {data,loading,error}=useFetch("https://dummyjson.com/products");
    
+     function handleAddToCart(getproducts)
+   { 
 
-    return <ShoppingCartContext.Provider value={{data,loading,error,handleAddToCart}}>
+   
+    let existing=[...cartItems];
+   const index = existing.findIndex((c) => c.id === getproducts.id);
+
+
+ 
+    if(index==-1)
+    {
+      existing.push({
+        ...getproducts,
+        quantity:1,
+        totalPrice:getproducts?.price,
+      });
+          console.log(existing)
+    }
+    else{
+      console.log("its coming")
+    }
+
+   }
+   
+
+    return <ShoppingCartContext.Provider value={{data,loading,error,handleAddToCart,cartItems}}>
         {children}
         </ShoppingCartContext.Provider>
   }
