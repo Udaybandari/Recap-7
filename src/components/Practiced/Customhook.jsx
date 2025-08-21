@@ -16,7 +16,7 @@ const useFetch = (url,options={}) => {
             if(result)
             {
                 
-                setData(result);
+                setData(result?.products);
                 setError(null);
                 setLoading(false);
             }

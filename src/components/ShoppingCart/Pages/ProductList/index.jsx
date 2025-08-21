@@ -13,7 +13,7 @@ console.log(data)
             Our Featured Products
           </h2>
         </div>
-        <div>
+        <div className="grid grid-cols-2 gap-5 mt-10 lg:mt-16 lg:gap-8 lg:grid-cols-4">
           {data && data.length > 0 ? (
             data.map((a) => <ProductTile key={a.id} a={a} />)
           ) : (
