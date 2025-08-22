@@ -31,9 +31,9 @@ const ProductTile = ({ a }) => {
         View Details
       </button>
        <button
-        disabled={
-          cartItems.findIndex((item) => item.id === a.id) > -1
-        }
+        // disabled={
+        //   cartItems.findIndex((item) => item.id === a.id) > -1
+        // }
         onClick={() => handleAddToCart(a)}
         className="disabled:opacity-65 px-5 mt-5 w-full py-2 rounded-none bg-black text-white font-bold text-lg"
       >
