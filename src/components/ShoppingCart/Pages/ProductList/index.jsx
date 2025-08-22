@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
 import ProductTile from "../../ProductTile";
+import { useNavigate } from "react-router-dom";
 
 const ProductListPage = () => {
   const { data } = useContext(ShoppingCartContext);
-
+const navigate=useNavigate();
   return (
     <section className="py-12 bg-white sm:py-16 lg:py-20">
       <div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -12,6 +13,7 @@ const ProductListPage = () => {
           <h2 className="text-3xl font-extralight text-gray-950 sm:text-4xl">
             Our Featured Products
           </h2>
+          <button onClick={()=>navigate("/cart")}>My Cart</button>
         </div>
         <div className="grid grid-cols-2 gap-5 mt-10 lg:mt-16 lg:gap-8 lg:grid-cols-4">
           {data && data.length > 0 ? (
