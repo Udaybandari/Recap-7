@@ -7,6 +7,7 @@ export const ShoppingCartContext = createContext(null);
 function ShoppingContext({ children }) {
  
   const [cartItems, setCartItems] = useState([]);
+  const [productDetails,setproductDetails]=useState(null);
   const { data, loading, error } = useFetch("https://dummyjson.com/products");
     
   function handleAddToCart(getproducts) {
@@ -69,7 +70,7 @@ function ShoppingContext({ children }) {
 
   return (
     <ShoppingCartContext.Provider
-      value={{ data, loading, error, handleAddToCart, handleRemoveFromCart, cartItems }}
+      value={{ data, loading, error, handleAddToCart, handleRemoveFromCart, cartItems,productDetails,setproductDetails }}
     >
       {children}
     </ShoppingCartContext.Provider>

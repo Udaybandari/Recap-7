@@ -10,7 +10,7 @@ const App = () => {
   
       <Routes>
           <Route path="/product-list" element={<ProductListPage/>}/>
-              <Route path="/product-list/:id" element={<ProductDetailsPage/>}/>
+              <Route path="/product-details/:id" element={<ProductDetailsPage/>}/>
               <Route path="/cart" element={<CartListPage/>}/>
       </Routes>
   </Fragment>
