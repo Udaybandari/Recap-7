@@ -9,7 +9,7 @@ const App = () => {
   return   <Fragment>
   
       <Routes>
-          <Route path="/product-list" element={<ProductListPage/>}/>
+          <Route path="/" element={<ProductListPage/>}/>
               <Route path="/product-details/:id" element={<ProductDetailsPage/>}/>
               <Route path="/cart" element={<CartListPage/>}/>
       </Routes>

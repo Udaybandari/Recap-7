@@ -5,7 +5,7 @@ import useFetch from "../../Practiced/Customhook";
 export const ShoppingCartContext = createContext(null);
 
 function ShoppingContext({ children }) {
- 
+
   const [cartItems, setCartItems] = useState([]);
   const [productDetails,setproductDetails]=useState(null);
   const { data, loading, error } = useFetch("https://dummyjson.com/products");
@@ -40,6 +40,12 @@ function ShoppingContext({ children }) {
     if (findIndex!==-1) {
       if(Yes)
     {
+      // existing[findIndex]={
+      //   ...existing[findIndex],
+      //   quantity:0,
+      //   totalPrice:0,
+      // }
+
           existing.splice(findIndex, 1);
     }
   
@@ -63,6 +69,13 @@ function ShoppingContext({ children }) {
           setCartItems(existing);
     localStorage.setItem("cartItems", JSON.stringify(existing));
   }
+ function clearCart(){
+  setCartItems([]);
+
+ }
+ useEffect(() => {
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+}, [cartItems]);
 
   useEffect(() => {
     setCartItems(JSON.parse(localStorage.getItem("cartItems") || "[]"));
@@ -70,7 +83,7 @@ function ShoppingContext({ children }) {
 
   return (
     <ShoppingCartContext.Provider
-      value={{ data, loading, error, handleAddToCart, handleRemoveFromCart, cartItems,productDetails,setproductDetails }}
+      value={{ data, loading, error, handleAddToCart, handleRemoveFromCart, clearCart,cartItems,productDetails,setproductDetails }}
     >
       {children}
     </ShoppingCartContext.Provider>

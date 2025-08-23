@@ -6,7 +6,7 @@ import { ShoppingCartContext } from "../../Context";
 const ProductDetailsPage = () => {
   const {id}=useParams();
   const { data, loading } = useFetch(`https://dummyjson.com/products/${id}`);
-  const{productDetails,setproductDetails,handleAddToCart}=useContext(ShoppingCartContext);
+  const{handleAddToCart}=useContext(ShoppingCartContext);
 if(loading)
 {
   return <h1>Loading....</h1>

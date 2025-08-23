@@ -2,7 +2,8 @@ import React, { Fragment, useContext } from "react";
 import { ShoppingCartContext } from "../Context";
 
 const CartTile = ({cartitem}) => {
-    const {handleRemoveFromCart, handleAddToCart}=useContext(ShoppingCartContext);
+   console.log(cartitem)
+    const {handleRemoveFromCart, handleAddToCart }=useContext(ShoppingCartContext);
   return <Fragment>
     <div className="grid grid-cols-3 items-start gap-5">
           <div className="col-span-2 flex items-start gap-5">
