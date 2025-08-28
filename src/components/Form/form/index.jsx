@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -6,18 +6,18 @@ const Form = () => {
     email: "",
   });
 
-  // handle any input change
   function handleOnChange(e) {
     const { name, value } = e.target;
+    console.log(e.target)
     setFormData({
       ...formData,
-      [name]: value, // dynamic key update
+      [name]: value, 
     });
   }
 
-  // handle submit
+
   function handleSubmit(e) {
-    e.preventDefault(); // stop page refresh
+    e.preventDefault(); 
     const{name}=e.target
     console.log("Form Submitted:", formData.name);
   }
@@ -25,7 +25,6 @@ const Form = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h1>Form</h1>
-
       <input
         type="text"
         name="name"
@@ -46,5 +45,4 @@ const Form = () => {
     </form>
   );
 };
-
 export default Form;
