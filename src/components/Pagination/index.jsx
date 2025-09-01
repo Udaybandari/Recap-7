@@ -10,7 +10,7 @@ function Pagination({ currentPage, totalPages = 10, onPageChange }) {
   }
 
   return (
-    <div className="pagination">
+    <div className="flex items-center justify-center mt-25">
       <button
         onClick={() => onPageChange(currentPage - 1)}
         className="pagination-btn"
@@ -20,7 +20,7 @@ function Pagination({ currentPage, totalPages = 10, onPageChange }) {
       </button>
       {generateNoOfPages().map((pageNo) => (
         <button
-          className={`pagination-btn ${currentPage === pageNo ? 'active' :''}`}
+          className={`m-5 ml-22 ${currentPage === pageNo ? 'active' :''}`}
           key={pageNo}
           onClick={() => onPageChange(pageNo)}
         >
@@ -29,7 +29,7 @@ function Pagination({ currentPage, totalPages = 10, onPageChange }) {
       ))}
       <button
         onClick={() => onPageChange(currentPage + 1)}
-        className="pagination-btn"
+        className="cursor-pointer"
         disabled={currentPage === totalPages}
       >
         Next
