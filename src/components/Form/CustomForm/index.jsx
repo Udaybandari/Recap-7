@@ -1,20 +1,21 @@
 import React from "react";
 import { loginFormElements } from "../config";
-
+import CustomInput from "../customInput";
+const formTypes = {
+  INPUT: "input",
+  SELECT: "select",
+  TEXTAREA: "textarea",
+};
 const CustomForm = ({
-  formControls = [],
-  onHandleSubmit,
   formData,
   setFormData,
-  buttonText,
 }) => {
 function renderFormElement(getCurrentElement) {
     let content = null;
-
     switch (getCurrentElement?.componentType) {
       case formTypes.INPUT:
         content = (
-          <CommonInput
+          <CustomInput
             label={getCurrentElement.label}
             name={getCurrentElement.name}
             id={getCurrentElement.id}
@@ -34,7 +35,7 @@ function renderFormElement(getCurrentElement) {
 
       default:
         content = (
-          <CommonInput
+          <CustomInput
             label={getCurrentElement.label}
             name={getCurrentElement.name}
             id={getCurrentElement.id}
@@ -45,6 +46,7 @@ function renderFormElement(getCurrentElement) {
               setFormData({
                 ...formData,
                 [event.target.name]: event.target.value,
+                
               })
             }
           />
@@ -53,12 +55,16 @@ function renderFormElement(getCurrentElement) {
     }
 
     return content;
-  }
+  } 
+  
   return (
     <div>
-        {loginFormElements.length?.map((a)=>
-           renderFormElement(singleFormElementItem)
-        )}
+      
+        {loginFormElements.length?loginFormElements.map((a)=>
+    
+             renderFormElement(a)
+     
+        ):null}
     </div>
   )
 };

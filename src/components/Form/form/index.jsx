@@ -1,4 +1,5 @@
 import  { useState } from "react";
+import CustomForm from "../CustomForm";
 
 const Form = () => {
   const [formData, setFormData] = useState({
@@ -24,24 +25,9 @@ const Form = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Form</h1>
-      <input
-        type="text"
-        name="name"
-        value={formData.name}
-        placeholder="Enter your name"
-        onChange={handleOnChange}
-      />
+      <CustomForm formData={formData} setFormData={setFormData} handleSubmit={handleSubmit}/>
 
-      <input
-        type="text"
-        name="email"
-        value={formData.email}
-        placeholder="Enter your email"
-        onChange={handleOnChange}
-      />
-
-      <button type="submit">Submit</button>
+      
     </form>
   );
 };

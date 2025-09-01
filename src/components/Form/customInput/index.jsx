@@ -8,7 +8,8 @@ const CustomInput = ({label, onChange, type, name, id, value, placeholder}) => {
    name={name||"name"}
    id={id||"id"}
    value={value} 
-   placeholder={placeholder||"enter value.."}/>
+   placeholder={placeholder||"enter value.."}
+   onChange={onChange}/>
     </div>
   )
 };

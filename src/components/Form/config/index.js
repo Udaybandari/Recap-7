@@ -8,12 +8,12 @@ export const loginFormElements = [
     type: "email",
   },
   {
-    name: "password",
-    id: "password",
-    placeholder: "Enter your Password",
-    label: "Password",
+    name: "name",
+    id: "name",
+    placeholder: "Enter your name",
+    label: "Name",
     componentType: "input",
-    type: "password",
+    type: "name",
   },
 ];
 
