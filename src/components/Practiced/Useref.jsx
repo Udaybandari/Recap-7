@@ -13,13 +13,13 @@ const startTimer=()=>{
   if(!running)
   {
    setRunning(true);
-  setStore(setInterval(()=>{
+  Time.current= setInterval(()=>{
 setTime((t)=>t+1);
 // console.log(Time.current)
   }
     ,1000)
   
-  }) 
+  }
 }
 const focus=()=>{
   inputref.current.focus();
