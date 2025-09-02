@@ -1,5 +1,6 @@
 
-import PaginationTest from "./components/Pagination/test";
+import DigitalClock from "./components/PROJECTS/DigitalClock";
+import PaginationTest from "./components/PROJECTS/Pagination/test";
 
 
 
@@ -8,7 +9,8 @@ const App = () => {
     <div >
       {/* <Form/> */}
    
-      <PaginationTest/>
+      {/* <PaginationTest/> */}
+      <DigitalClock/>
     </div>
   )
 };
