@@ -5,7 +5,7 @@ import PaginationTest from "./components/Pagination/test";
 
 const App = () => {
   return   (
-    <div className="w-[500px] h-[500px] flex items-center justify-center">
+    <div >
       {/* <Form/> */}
    
       <PaginationTest/>
