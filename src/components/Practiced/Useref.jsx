@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 const Usref = () => {
 const [running,setRunning]=useState(false);
 const [time,setTime]=useState(0);
-
+const [store,setStore]=useState(null);
 const inputref=useRef(null);
 
 const prevTime=useRef(null);
@@ -13,13 +13,13 @@ const startTimer=()=>{
   if(!running)
   {
    setRunning(true);
-  Time.current= setInterval(()=>{
+  setStore(setInterval(()=>{
 setTime((t)=>t+1);
-console.log(Time.current)
+// console.log(Time.current)
   }
     ,1000)
   
-  }
+  }) 
 }
 const focus=()=>{
   inputref.current.focus();
