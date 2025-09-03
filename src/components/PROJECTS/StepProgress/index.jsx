@@ -8,13 +8,26 @@ const StepsProgressBar = ({steps,activeStep,setActiveStep}) => {
   function handleNextStep() {
     setActiveStep((prevStep) => Math.min(prevStep + 1, steps.length - 1));
   }
+    function calculateCurrentStepWidth() {
+    return `${(100 / (steps.length - 1)) * activeStep}%`;
+  }
   return (
     <div>
         <div className="flex justify-between w-144 items-center m-auto bg-amber-100 rounded-2xl  p-10 mt-20">
             {steps&&steps.length>0
             ?steps.map((stepitem,index)=>(
-                  <div key={index}>
-                  {stepitem}
+                  <div key={index}  style={{ width: calculateCurrentStepWidth() }} className={`w-10 h-10 flex items-center justify-center rounded-full 
+                    ${
+                      index == activeStep
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-300 text-black"
+                    }`}>
+                    <span  className={`mt-2 text-sm ${
+                    index === activeStep ? "font-bold text-blue-600" : "text-gray-600"
+                  }`} >
+                        {stepitem}
+                    </span>
+                 
                     </div>
             )):null}
         </div>
