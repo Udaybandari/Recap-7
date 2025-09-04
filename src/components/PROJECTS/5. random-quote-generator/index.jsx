@@ -40,11 +40,11 @@ function RandomQuoteGenerator() {
   return (
     <div className="random-quote-generator">
       <h1>Random Quote Generator</h1>
-      <div className="quote-wrapper">
+      <div >
         <p>{quote?.author}</p>
         <p>{quote?.content}</p>
       </div>
-      <button className="refresh-btn" onClick={handleRefresh}>Refresh</button>
+      <button  onClick={handleRefresh}>Refresh</button>
     </div>
   );
 }
