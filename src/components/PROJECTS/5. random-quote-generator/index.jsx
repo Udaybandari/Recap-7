@@ -38,7 +38,7 @@ function RandomQuoteGenerator() {
   }
 
   return (
-    <div className="random-quote-generator">
+    <div>
       <h1>Random Quote Generator</h1>
       <div >
         <p>{quote?.author}</p>
