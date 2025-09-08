@@ -1,7 +1,7 @@
 
 
 import { useEffect, useState } from "react";
-import './quote.css'
+
 
 function RandomQuoteGenerator() {
   const [loading, setLoading] = useState(false);
