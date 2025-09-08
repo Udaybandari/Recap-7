@@ -1,4 +1,4 @@
-//https://api.quotable.io/quotes/random
+
 
 import { useEffect, useState } from "react";
 import './quote.css'
