@@ -1,10 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const ToolTip = ({ children, content, delay} ) => {
-  let timeout;
+  const timeRef=useRef(null);
+useEffect(()=>{
+   return ()=>{
+      if (timeRef.current) {
+        clearTimeout(timeRef.current);
+      }
+   }
+  },[])
+  
   const[isVisible, setIsVisible]=useState(false);
   function handleShowTooltip() {
-    timeout = setTimeout(() => {
+    timeRef.current = setTimeout(() => {
       setIsVisible(true);
     }, delay || 500);
   }
