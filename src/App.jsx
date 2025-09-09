@@ -1,13 +1,14 @@
+import Tooltiptest from "./components/PROJECTS/ToolTip/test";
 
-import Steper from "./components/PROJECTS/StepProgress/test";
+
 
 
 
 
 const App = () => {
   return   (
-    <div >
-   <Steper/>
+    <div className=" flex items-center justify-center  h-[800px]" >
+     <Tooltiptest/>
     </div>
   )
 };
