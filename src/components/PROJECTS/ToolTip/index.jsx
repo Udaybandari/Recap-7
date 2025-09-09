@@ -16,10 +16,15 @@ useEffect(()=>{
       setIsVisible(true);
     }, delay || 500);
   }
-   function handleHideTooltip() {
-    clearTimeout(timeout);
+  function handleHideTooltip() {
+   if(timeRef.current)
+   {
+    clearTimeout(timeRef.current);
+    timeRef.current=null;
+   }
     setIsVisible(false);
   }
+
   return (
     <div className="border-5 w-[550px] h-[220px] ml-88"
      onMouseEnter={handleShowTooltip}
