@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Currency = () => {
     const[amount,setAmount]=useState(1);
@@ -14,13 +14,31 @@ const Currency = () => {
             }
         )
         const result=await Response.json();
+        const calculatedRate = result?.rates[toCurrency];
+        setExchangeRate(calculatedRate);
+        
+    setConvertedAmount((amount * calculatedRate).toFixed(2));
+
         console.log(result)
     }
+     function handleAmountChange(event) {
+    setAmount(event.target.value);
+  }
+
+  useEffect(() => {
+    fetchexchangeRate();
+  }, [fromCurrency, toCurrency, amount]);
   return (
     <div>
         <h1>Currency Converter</h1>
         <div>
-         <button onClick={fetchexchangeRate}>COnsole</button>
+         <input
+          value={amount}
+          onChange={handleAmountChange}
+          type="number"
+          name="amount"
+          placeholder="Enter Amount"
+        />
         </div>
     </div>
   )
