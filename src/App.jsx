@@ -1,4 +1,5 @@
-import Tooltiptest from "./components/PROJECTS/ToolTip/test";
+import Currency from "./components/PROJECTS/CurrencyConverter";
+
 
 
 
@@ -8,7 +9,7 @@ import Tooltiptest from "./components/PROJECTS/ToolTip/test";
 const App = () => {
   return   (
     <div className=" flex items-center justify-center  h-[800px]" >
-     <Tooltiptest/>
+     <Currency/>
     </div>
   )
 };
