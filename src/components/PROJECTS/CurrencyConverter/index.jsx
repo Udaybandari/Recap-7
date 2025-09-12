@@ -17,7 +17,7 @@ const Currency = () => {
         const calculatedRate = result?.rates[toCurrency];
         setExchangeRate(calculatedRate);
         
-    setConvertedAmount((amount * calculatedRate).toFixed(2));
+    setConvertedAmount((amount * calculatedRate).toFixed(1));
 
         console.log(result)
     }
@@ -36,9 +36,9 @@ const Currency = () => {
     fetchexchangeRate();
   }, [fromCurrency, toCurrency, amount]);
   return (
-    <div>
-        <h1>Currency Converter</h1>
-        <div>
+    <div className="border-1 w-[600px] h-[400px] flex flex-col items-center justify-center  gap-5">
+        <h1 className="text-4xl font-mono  mb-8">Currency Converter</h1>
+        <div className="flex  items-center justify-center gap-22 border-2  w-138 h-33">
          <input
           value={amount}
           onChange={handleAmountChange}
@@ -63,6 +63,9 @@ const Currency = () => {
           <option value={"USD"}>USD</option>
         </select>
       </div>
+       <p className="exchange-rate">
+        Exchange Rate: 1 {fromCurrency} = {exchangeRate} {toCurrency}
+      </p>
         </div>
     </div>
   )
