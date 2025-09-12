@@ -1,4 +1,4 @@
-import Currency from "./components/PROJECTS/CurrencyConverter";
+import FilterProducts from "./components/PROJECTS/FilterProducts";
 
 
 
@@ -9,7 +9,8 @@ import Currency from "./components/PROJECTS/CurrencyConverter";
 const App = () => {
   return   (
     <div className=" flex items-center justify-center  h-[800px]" >
-     <Currency/>
+ <FilterProducts/>
+
     </div>
   )
 };
