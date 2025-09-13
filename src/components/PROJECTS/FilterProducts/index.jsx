@@ -25,6 +25,18 @@ const FiterProducts = () => {
     }
   }
    useEffect(() => {
+    const cpyProducts = [...products];
+    setFilteredItems(
+      currentSelectedCategory !== ""
+        ? cpyProducts.filter(
+            (productItem) =>
+              productItem.category.toLowerCase() ===
+              currentSelectedCategory.toLowerCase()
+          )
+        : cpyProducts
+    );
+  }, [currentSelectedCategory]);
+   useEffect(() => {
     fetchProducts();
   }, []);
  const uniqueCategories =
