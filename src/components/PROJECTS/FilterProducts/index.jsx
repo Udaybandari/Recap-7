@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const FiterProducts = () => {
+  const[loading,setLoading]=useState(false);
+  const[products,setProducts]=useState([]);
+    const [currentSelectedCategory, setCurrentSelectedCategory] = useState("");
+  const[FilteredItems,setFilteredItems]=useState([])
     async function fetchProducts() {
     try {
       setLoading(true);
@@ -23,13 +27,30 @@ const FiterProducts = () => {
    useEffect(() => {
     fetchProducts();
   }, []);
-
+ const uniqueCategories =
+    products && products.length > 0
+      ? [...new Set(products.map((productItem) => productItem.category))]
+      : [];
   return (
     <div>
         <h1>Filter Products</h1>
-        <div>
-            
-        </div>
+      <div className="flex flex-col border-1 h-55 items-center justify-center w-33" >
+        {uniqueCategories.map((uniqueCategoryItem) => (
+          <button
+            onClick={() =>
+              setCurrentSelectedCategory(
+                currentSelectedCategory !== "" &&
+                  currentSelectedCategory === uniqueCategoryItem
+                  ? ""
+                  : uniqueCategoryItem
+              )
+            }
+            className={`${currentSelectedCategory === uniqueCategoryItem ? 'active' : ''}`}
+          >
+            {uniqueCategoryItem}
+          </button>
+        ))}
+      </div>
     </div>
   )
 };
