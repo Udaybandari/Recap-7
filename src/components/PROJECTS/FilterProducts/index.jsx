@@ -63,6 +63,16 @@ const FiterProducts = () => {
           </button>
         ))}
       </div>
+      <ul className="h-22 border-2 overflow-scroll">
+        {FilteredItems && FilteredItems.length > 0
+          ? FilteredItems.map((productItem) => (
+              <li key={productItem.id}>
+                <p>{productItem.title}</p>
+                <button>{productItem.category}</button>
+              </li>
+            ))
+          : null}
+      </ul>
     </div>
   )
 };
